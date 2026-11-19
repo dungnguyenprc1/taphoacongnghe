@@ -7,11 +7,14 @@ import { getCategory, getProduct, getProducts } from "@/lib/queries";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const p = getProduct(id);
+  const p = await getProduct(id);
   if (!p) notFound();
-  const cat = getCategory(p.category);
+  const [cat, sameCategory] = await Promise.all([
+    getCategory(p.category),
+    getProducts({ category: p.category, limit: 6 }),
+  ]);
   if (!cat) notFound();
-  const related = getProducts({ category: p.category, limit: 6 }).filter((x) => x.id !== p.id).slice(0, 5);
+  const related = sameCategory.filter((x) => x.id !== p.id).slice(0, 5);
 
   return (
     <>

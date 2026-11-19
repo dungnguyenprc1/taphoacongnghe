@@ -1,11 +1,9 @@
-import Database from "better-sqlite3";
-import fs from "node:fs";
-import path from "node:path";
-import { seedCategories, seedProducts } from "./seed";
+import { createClient, type Client } from "@libsql/client";
 
-const DB_PATH = process.env.DATABASE_PATH ?? path.join(process.cwd(), "db", "store.sqlite");
+// Turso in production (libsql://... + auth token); a local SQLite file in dev.
+export const DATABASE_URL = process.env.TURSO_DATABASE_URL || "file:db/store.sqlite";
 
-const schema = `
+export const schema = `
 CREATE TABLE IF NOT EXISTS categories (
   slug      TEXT PRIMARY KEY,
   name      TEXT NOT NULL,
@@ -54,41 +52,12 @@ CREATE TABLE IF NOT EXISTS order_items (
 CREATE INDEX IF NOT EXISTS idx_order_items_order ON order_items(order_id);
 `;
 
-function seed(db: Database.Database) {
-  const insertCategory = db.prepare(
-    "INSERT INTO categories (slug, name, icon, position) VALUES (@slug, @name, @icon, @position)",
-  );
-  const insertProduct = db.prepare(`
-    INSERT INTO products (category, name, price, old_price, icon, rating, specs, color, sold, stock, installment, gift)
-    VALUES (@category, @name, @price, @oldPrice, @icon, @rating, @specs, @color, @sold, @stock, @installment, @gift)
-  `);
-
-  // IMMEDIATE takes the write lock up front, so concurrent processes can't both seed.
-  db.transaction(() => {
-    const hasData = db.prepare("SELECT COUNT(*) AS n FROM categories").get() as { n: number };
-    if (hasData.n > 0) return;
-    seedCategories.forEach((c, position) => insertCategory.run({ ...c, position }));
-    for (const p of seedProducts) {
-      insertProduct.run({ ...p, specs: JSON.stringify(p.specs), installment: p.installment ? 1 : 0 });
-    }
-  }).immediate();
-}
-
-function open() {
-  fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
-  const db = new Database(DB_PATH);
-  // Wait instead of failing when another process (e.g. a build worker) holds the lock.
-  db.pragma("busy_timeout = 5000");
-  db.pragma("journal_mode = WAL");
-  db.pragma("foreign_keys = ON");
-  db.exec(schema);
-  seed(db);
-  return db;
-}
-
-// Opened lazily on first query so importing this module (e.g. during build) never touches the file.
-// The connection lives on globalThis so dev hot reloads reuse it.
-const globalForDb = globalThis as unknown as { db?: Database.Database };
+// Created lazily so importing this module (e.g. during build) never opens a connection.
+// The client lives on globalThis so dev hot reloads reuse it.
+const globalForDb = globalThis as unknown as { db?: Client };
 export function getDb() {
-  return (globalForDb.db ??= open());
+  return (globalForDb.db ??= createClient({
+    url: DATABASE_URL,
+    authToken: process.env.TURSO_AUTH_TOKEN,
+  }));
 }

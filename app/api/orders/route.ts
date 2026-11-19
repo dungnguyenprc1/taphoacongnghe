@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const order = createOrder(parsed.data);
+    const order = await createOrder(parsed.data);
     return NextResponse.json({ data: order }, { status: 201 });
   } catch (e) {
     if (e instanceof OrderError) return NextResponse.json({ error: e.message }, { status: 409 });

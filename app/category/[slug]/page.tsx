@@ -11,10 +11,10 @@ type Props = {
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { slug } = await params;
   const { sort } = await searchParams;
-  const cat = getCategory(slug);
+  const cat = await getCategory(slug);
   if (!cat) notFound();
 
-  const items = getProducts({ category: slug, sort: parseSort(sort) });
+  const items = await getProducts({ category: slug, sort: parseSort(sort) });
 
   return (
     <section className="box">

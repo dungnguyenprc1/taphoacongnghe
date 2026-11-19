@@ -5,12 +5,14 @@ import ProductCard from "@/components/ProductCard";
 import { getCategories, getProducts } from "@/lib/queries";
 import type { Product } from "@/lib/types";
 
-export default function Home() {
-  const categories = getCategories();
-  const flash = getProducts({ sort: "discount", limit: 8 });
-  const suggested = getProducts({ limit: 10 });
-  const phones = getProducts({ category: "dien-thoai" });
-  const laptops = getProducts({ category: "laptop" });
+export default async function Home() {
+  const [categories, flash, suggested, phones, laptops] = await Promise.all([
+    getCategories(),
+    getProducts({ sort: "discount", limit: 8 }),
+    getProducts({ limit: 10 }),
+    getProducts({ category: "dien-thoai" }),
+    getProducts({ category: "laptop" }),
+  ]);
 
   return (
     <>

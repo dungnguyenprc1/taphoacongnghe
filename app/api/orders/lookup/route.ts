@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Vui lòng nhập mã đơn hàng và số điện thoại" }, { status: 400 });
   }
 
-  const order = findOrderForCustomer(code, phone);
+  const order = await findOrderForCustomer(code, phone);
   if (!order) return NextResponse.json({ error: "Không tìm thấy đơn hàng" }, { status: 404 });
   return NextResponse.json({ data: order });
 }

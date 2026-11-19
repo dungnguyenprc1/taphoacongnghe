@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   description: "Cửa hàng điện thoại, laptop, tablet, phụ kiện – dự án demo Next.js",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="vi">
       <body>
         <CartProvider>
-          <Header categories={getCategories()} />
+          <Header categories={await getCategories()} />
           <main className="container">{children}</main>
           <Footer />
         </CartProvider>

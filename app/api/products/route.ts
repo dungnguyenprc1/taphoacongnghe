@@ -3,11 +3,11 @@ import { getProducts } from "@/lib/queries";
 import { parseSort } from "@/lib/validation";
 
 // GET /api/products?category=laptop&q=nova&sort=asc|desc|discount&ids=1,2,3&limit=10
-export function GET(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const sp = req.nextUrl.searchParams;
   const limit = Number(sp.get("limit"));
 
-  const data = getProducts({
+  const data = await getProducts({
     category: sp.get("category") ?? undefined,
     q: sp.get("q")?.trim() || undefined,
     ids: sp.get("ids")?.split(",").filter(Boolean),

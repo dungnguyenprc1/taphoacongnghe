@@ -3,7 +3,7 @@ import { getProducts } from "@/lib/queries";
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q = "" } = await searchParams;
-  const items = q.trim() ? getProducts({ q: q.trim() }) : [];
+  const items = q.trim() ? await getProducts({ q: q.trim() }) : [];
 
   return (
     <section className="box">
