@@ -34,7 +34,7 @@ export default async function ProductPage({ params }: Props) {
       <p className="crumbs"><Link href="/">Trang chủ</Link> / {p.shortName}</p>
       <div className="detail">
         <div className="detail-img">
-          <Image src={p.image} alt={p.name} fill priority sizes="(max-width: 768px) 100vw, 50vw" />
+          <Image src={p.image} alt={p.name} fill priority unoptimized={p.image.endsWith(".svg")} sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
         <div>
           <h1>{p.name}</h1>

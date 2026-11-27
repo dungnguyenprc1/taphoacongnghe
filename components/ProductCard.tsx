@@ -6,7 +6,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/san-pham/${product.slug}`} className="card">
       <div className="card-img">
-        <Image src={product.image} alt={product.name} fill sizes="(max-width: 640px) 50vw, 25vw" />
+        <Image src={product.image} alt={product.name} fill unoptimized={product.image.endsWith(".svg")} sizes="(max-width: 640px) 50vw, 25vw" />
         {product.preorder && <span className="badge">Hàng order</span>}
       </div>
       <div className="card-body">
