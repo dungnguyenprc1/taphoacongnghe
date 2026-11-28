@@ -7,7 +7,7 @@ export type Product = {
   shortName: string;
   price: number; // giá bán (đồng)
   image: string; // đường dẫn trong thư mục public/
-  category: "pin" | "sac-cap" | "camera" | "dong-ho" | "am-thanh" | "tien-ich";
+  category: "pin" | "sac-cap" | "camera" | "dong-ho" | "am-thanh" | "tien-ich" | "ghe-o-to";
   warranty: string;
   features: string[];
   note?: string; // lưu ý cho khách: không hộp, hàng order, màu ngẫu nhiên...
@@ -687,6 +687,180 @@ export const products: Product[] = [
     ],
     inStock: true,
   },
+  {
+    slug: "ghe-o-to-diono-radian-rxt-ii-0-22kg",
+    name: "Ghế an toàn ô tô trẻ em DIONO Radian RXT II (Mỹ), cho bé 0–22kg",
+    shortName: "Ghế ô tô Diono Radian RXT II 0–22kg",
+    price: 2129000,
+    image: "/images/ghe-diono-radian-rxt2-22kg.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "Khung thép nguyên khối, bảo vệ va chạm hai bên",
+      "Lắp quay sau cho bé sơ sinh, quay trước khi bé lớn",
+      "Dây đai 5 điểm, đệm ôm êm ái",
+    ],
+    note: "Hộp móp/xấu, sản phẩm bên trong mới.",
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-diono-radian-rxt-ii-0-25kg",
+    name: "Ghế an toàn ô tô trẻ em DIONO Radian RXT II (Mỹ), cho bé 0–25kg",
+    shortName: "Ghế ô tô Diono Radian RXT II 0–25kg",
+    price: 2507000,
+    image: "/images/ghe-diono-radian-rxt2-25kg.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "Khung thép nguyên khối, chịu lực cao",
+      "Thiết kế Slim-Fit, lắp được 3 ghế cạnh nhau",
+      "Gập gọn mang đi du lịch",
+    ],
+    note: "Hộp móp/xấu, sản phẩm bên trong mới.",
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-diono-cambria-15-36kg",
+    name: "Ghế nâng ô tô trẻ em DIONO Cambria (Mỹ), cho bé 15–36kg",
+    shortName: "Ghế ô tô Diono Cambria 15–36kg",
+    price: 2507000,
+    image: "/images/ghe-diono-cambria.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "2 trong 1: ghế tựa lưng hoặc tháo thành đệm nâng",
+      "Đệm đầu chống va chạm hai bên, chuẩn ECE R44/04",
+      "Vải lưới thoáng khí, có khay để cốc",
+    ],
+    note: "Hộp móp/xấu, sản phẩm bên trong mới.",
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-diono-monterey-2-15-36kg",
+    name: "Ghế nâng ô tô trẻ em DIONO Monterey 2 (Mỹ), cho bé 15–36kg",
+    shortName: "Ghế ô tô Diono Monterey 2",
+    price: 2129000,
+    image: "/images/ghe-diono-monterey-2.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "Mở rộng chiều ngang vai, 11 nấc chỉnh tựa đầu",
+      "Khoá ISOFIX/LATCH cố định chắc chắn",
+      "Tháo lưng thành đệm nâng khi bé lớn",
+    ],
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-popmax-pm2102-0-36kg",
+    name: "Ghế an toàn ô tô trẻ em POPMAX PM2102 (UK), cho bé 0–36kg, khoá ISOFIX",
+    shortName: "Ghế ô tô POPMAX PM2102",
+    price: 3150000,
+    image: "/images/ghe-popmax-pm2102.jpg",
+    category: "ghe-o-to",
+    warranty: "1 tháng",
+    features: [
+      "Dùng từ sơ sinh đến khoảng 12 tuổi (0–36kg)",
+      "Khoá ISOFIX, bảo vệ va chạm hai bên",
+      "Vải kháng khuẩn, nhiều hoạ tiết cho bé",
+    ],
+    note: "Có mẫu Cô Tiên, Hươu, Khủng Long, Lợn Peppa — nhắn shop để chọn mẫu.",
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-diono-radian-3rx-hong",
+    name: "Ghế an toàn ô tô trẻ em DIONO Radian 3RX (Mỹ), khung thép, gập gọn, màu hồng",
+    shortName: "Ghế ô tô Diono Radian 3RX hồng",
+    price: 2129000,
+    image: "/images/ghe-diono-radian-3rx.jpg",
+    category: "ghe-o-to",
+    warranty: "3 năm",
+    features: [
+      "3 trong 1: quay sau, quay trước, ghế nâng",
+      "Khung thép nguyên khối, Slim-Fit 43cm",
+      "Gập phẳng, dùng được trên máy bay (FAA)",
+    ],
+    note: "Hộp móp/xấu, sản phẩm bên trong mới.",
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-htt-lm211-0-4-tuoi",
+    name: "Ghế ô tô trẻ em HTT LM211 cho bé 0–4 tuổi (không ISOFIX)",
+    shortName: "Ghế ô tô HTT LM211",
+    price: 1890000,
+    image: "/images/ghe-htt-lm211.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "Cho bé 0–18kg, lắp được 2 chiều",
+      "3 nấc ngả lưng, dây đai 5 điểm",
+      "Lắp bằng dây an toàn ô tô, vải tháo giặt được",
+    ],
+    note: "Màu Đen–đỏ hoặc Vàng–nâu. Không có khoá ISOFIX.",
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-cybex-aura-fix-isofix",
+    name: "Ghế ô tô trẻ em Cybex CBX Aura-Fix (Đức), 9 tháng–12 tuổi, có khoá ISOFIX",
+    shortName: "Ghế ô tô Cybex Aura-Fix ISOFIX",
+    price: 2885000,
+    image: "/images/ghe-cybex-aura-fix.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "Cho bé 9–36kg, dùng từ 9 tháng đến 12 tuổi",
+      "Bàn an toàn giảm lực lên cổ và cột sống",
+      "Đệm nâng tháo rời, chuẩn ECE R44/04",
+    ],
+    note: "Màu Đỏ, Đen, Hồng, Xanh — nhắn shop để chọn màu.",
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-cybex-aura-fix",
+    name: "Ghế ô tô trẻ em Cybex CBX Aura-Fix (Đức), 9 tháng–12 tuổi, không khoá ISOFIX",
+    shortName: "Ghế ô tô Cybex Aura-Fix",
+    price: 2129000,
+    image: "/images/ghe-cybex-aura-fix.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "Cho bé 9–36kg, dùng từ 9 tháng đến 12 tuổi",
+      "Bàn an toàn giảm lực lên cổ và cột sống",
+      "Lắp bằng dây an toàn 3 điểm của xe",
+    ],
+    note: "Màu Đỏ, Đen, Hồng, Xanh — nhắn shop để chọn màu.",
+    inStock: true,
+  },
+  {
+    slug: "ghe-o-to-diono-radian-rxt",
+    name: "Ghế an toàn ô tô trẻ em DIONO Radian RXT (Mỹ), dùng từ sơ sinh đến 12 tuổi",
+    shortName: "Ghế ô tô Diono Radian RXT",
+    price: 2129000,
+    image: "/images/ghe-diono-radian-rxt.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "3 trong 1, cho bé 0–54kg",
+      "Khung thép, đệm memory foam, tựa đầu 12 nấc",
+      "Gập gọn, dùng được trên máy bay (FAA)",
+    ],
+    inStock: false,
+  },
+  {
+    slug: "ghe-o-to-apramo-metro-hub-xoay-360",
+    name: "Ghế an toàn ô tô trẻ em APRAMO Metro Hub (Anh), xoay 360°, khoá ISOFIX",
+    shortName: "Ghế ô tô Apramo Metro Hub 360°",
+    price: 3263000,
+    image: "/images/ghe-apramo-metro-hub.jpg",
+    category: "ghe-o-to",
+    warranty: "12 tháng",
+    features: [
+      "Xoay 360° đưa bé ra vào xe dễ dàng",
+      "Chuẩn i-Size ECE R129, khoá ISOFIX + chân chống",
+      "4 nấc ngả lưng, cho bé sơ sinh đến 4 tuổi",
+    ],
+    note: "Màu Đen xám hoặc Đỏ cam.",
+    inStock: true,
+  },
 ];
 
 export const categories: { id: Product["category"] | "all"; label: string; short: string }[] = [
@@ -697,6 +871,7 @@ export const categories: { id: Product["category"] | "all"; label: string; short
   { id: "dong-ho", label: "Đồng hồ", short: "Đồng hồ" },
   { id: "am-thanh", label: "Âm thanh", short: "Âm thanh" },
   { id: "tien-ich", label: "Tiện ích", short: "Tiện ích" },
+  { id: "ghe-o-to", label: "Ghế ô tô trẻ em", short: "Ghế ô tô" },
 ];
 
 export function categoryLabel(id: Product["category"]) {
