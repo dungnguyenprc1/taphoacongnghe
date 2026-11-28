@@ -319,3 +319,10 @@ h2 { font-size: 1.6rem; font-weight: 800; }
 .variant-missing .variant-opt:not(:disabled) { border-color: #f3a3b4; }
 .variant-error { color: var(--red); font-weight: 600; font-size: .88rem; margin: 0; }
 .price-from { font-size: .8rem; font-weight: 600; color: var(--muted); }
+
+/* ---------- Gallery thumbnails ---------- */
+.thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; }
+.thumb { position: relative; aspect-ratio: 1; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; padding: 0; cursor: pointer; }
+.thumb img { object-fit: contain; padding: 4px; }
+.thumb.active { border: 2px solid var(--navy); }
+@media (max-width: 860px) { .thumbs { grid-template-columns: repeat(5, 1fr); gap: 8px; } }

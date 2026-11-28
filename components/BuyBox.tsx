@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Product, formatPrice, priceRange } from "@/data/products";
 import { shop, zaloUrl, telUrl, orderMessage } from "@/lib/config";
 import CopyOrderLink from "./CopyOrderLink";
+import { GALLERY_EVENT } from "./ProductGallery";
 
 // Giá + chọn phân loại + nút đặt hàng. children = phần mô tả nằm giữa giá và nút.
 export default function BuyBox({ product, children }: { product: Product; children: React.ReactNode }) {
@@ -27,8 +28,11 @@ export default function BuyBox({ product, children }: { product: Product; childr
   };
 
   const pick = (group: string, label: string) => {
-    setPicked((p) => ({ ...p, [group]: p[group] === label ? "" : label }));
+    const turningOn = picked[group] !== label;
+    setPicked((p) => ({ ...p, [group]: turningOn ? label : "" }));
     setMissing((m) => m.filter((x) => x !== group));
+    const img = groups.find((g) => g.name === group)?.options.find((o) => o.label === label)?.image;
+    if (turningOn && img) window.dispatchEvent(new CustomEvent(GALLERY_EVENT, { detail: img }));
   };
 
   return (

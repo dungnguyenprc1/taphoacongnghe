@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products, getProduct, formatPrice, categoryLabel } from "@/data/products";
 import BuyBox from "@/components/BuyBox";
+import ProductGallery from "@/components/ProductGallery";
 import ProductCard from "@/components/ProductCard";
 import { Check } from "@/components/Icons";
 
@@ -29,6 +29,8 @@ export default async function ProductPage({ params }: Props) {
   const p = getProduct(slug);
   if (!p) notFound();
   const related = products.filter((x) => x.category === p.category && x.slug !== p.slug).slice(0, 5);
+  // Ảnh chính + ảnh của từng phân loại (không trùng).
+  const gallery = [...new Set([p.image, ...(p.variants ?? []).flatMap((g) => g.options.map((o) => o.image)).filter((x): x is string => !!x)])];
   const status = p.preorder ? "Hàng order" : p.inStock ? "Còn hàng" : "Hết hàng";
 
   return (
@@ -37,11 +39,7 @@ export default async function ProductPage({ params }: Props) {
         <Link href="/">Trang chủ</Link> / <Link href={`/?cat=${p.category}#san-pham`}>{categoryLabel(p.category)}</Link> / <span>{p.shortName}</span>
       </nav>
       <div className="detail">
-        <div className="detail-media">
-          <div className="detail-img">
-            <Image src={p.image} alt={p.name} fill priority unoptimized={p.image.endsWith(".svg")} sizes="(max-width: 768px) 100vw, 50vw" />
-          </div>
-        </div>
+        <ProductGallery images={gallery} alt={p.name} />
         <div className="detail-info">
           <span className={`status ${p.inStock || p.preorder ? "" : "status-out"}`}>{status}</span>
           <h1>{p.name}</h1>

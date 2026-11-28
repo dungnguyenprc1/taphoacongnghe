@@ -15,11 +15,12 @@ export type Product = {
   badge?: string; // nhãn nhỏ trên ảnh: "Bán chạy", "Mới", "Quà tặng"...
   inStock: boolean;
   // Phân loại (màu, mẫu, loại...). Khách phải chọn đủ mỗi nhóm trước khi đặt.
-  // price của lựa chọn (nếu có) thay cho giá gốc; soldOut = lựa chọn đó hết hàng.
+  // price của lựa chọn (nếu có) thay cho giá gốc; soldOut = lựa chọn đó hết hàng;
+  // image = ảnh hiện khi khách chọn lựa chọn đó.
   variants?: VariantGroup[];
 };
 
-export type VariantOption = { label: string; price?: number; soldOut?: boolean };
+export type VariantOption = { label: string; price?: number; soldOut?: boolean; image?: string };
 export type VariantGroup = { name: string; options: VariantOption[] };
 
 // Ảnh tạm cho sản phẩm chưa có ảnh. Có ảnh thật thì đặt vào public/images/ và sửa đường dẫn.
@@ -89,7 +90,7 @@ export const products: Product[] = [
     ],
     note: "Hàng không hộp, chưa in logo. Ảnh minh họa.",
     variants: [
-      { name: "Màu sắc", options: [{ label: "Hồng", soldOut: true }, { label: "Xanh dương", soldOut: true }, { label: "Xanh lá" }, { label: "Tím", soldOut: true }, { label: "Đen", soldOut: true }] },
+      { name: "Màu sắc", options: [{ label: "Hồng", image: "/images/v/pin-du-phong-20000mah-kem-2-cap-2.jpg", soldOut: true }, { label: "Xanh dương", soldOut: true }, { label: "Xanh lá" }, { label: "Tím", soldOut: true }, { label: "Đen", image: "/images/v/pin-du-phong-20000mah-kem-2-cap-1.jpg", soldOut: true }] },
     ],
     inStock: true,
   },
@@ -121,7 +122,7 @@ export const products: Product[] = [
       "Tiện để trong xe, văn phòng, balo",
     ],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng" }, { label: "Đỏ" }, { label: "Tím" }, { label: "Xanh lá" }, { label: "Xanh dương" }, { label: "Vàng champagne" }] },
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng", image: "/images/v/cap-sac-3-dau-drapow-cz33-3.jpg" }, { label: "Đỏ" }, { label: "Tím" }, { label: "Xanh lá" }, { label: "Xanh dương", image: "/images/v/cap-sac-3-dau-drapow-cz33-1.jpg" }, { label: "Vàng champagne", image: "/images/v/cap-sac-3-dau-drapow-cz33-2.jpg" }] },
     ],
     inStock: true,
   },
@@ -224,7 +225,7 @@ export const products: Product[] = [
     ],
     note: "Hàng không hộp, chưa in logo.",
     variants: [
-      { name: "Màu sắc", options: [{ label: "Hồng" }, { label: "Xanh dương", soldOut: true }, { label: "Xanh lá" }, { label: "Tím" }, { label: "Đen", soldOut: true }] },
+      { name: "Màu sắc", options: [{ label: "Hồng", image: "/images/v/pin-du-phong-10000mah-2-cap-30w-1.jpg" }, { label: "Xanh dương", image: "/images/v/pin-du-phong-10000mah-2-cap-30w-2.jpg", soldOut: true }, { label: "Xanh lá" }, { label: "Tím" }, { label: "Đen", soldOut: true }] },
     ],
     inStock: true,
   },
@@ -243,7 +244,7 @@ export const products: Product[] = [
     ],
     note: "Hàng không hộp, chưa in logo.",
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng", soldOut: true }, { label: "Hồng" }, { label: "Xanh", soldOut: true }] },
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng", image: "/images/v/pin-du-phong-10000mah-lien-cap-type-c-30w-1.jpg", soldOut: true }, { label: "Hồng" }, { label: "Xanh", soldOut: true }] },
     ],
     inStock: true,
   },
@@ -335,7 +336,7 @@ export const products: Product[] = [
       "Sạc nhanh 20W",
     ],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng" }] },
+      { name: "Màu sắc", options: [{ label: "Đen", image: "/images/v/pin-veger-x5-5000mah-find-my-1.jpg" }, { label: "Trắng", image: "/images/v/pin-veger-x5-5000mah-find-my-2.jpg" }] },
     ],
     inStock: true,
   },
@@ -353,7 +354,7 @@ export const products: Product[] = [
       "Sạc được cả Apple Watch",
     ],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đỏ" }, { label: "Xanh" }] },
+      { name: "Màu sắc", options: [{ label: "Đỏ", image: "/images/v/pin-mipow-power-tube-pro-10000mah-1.jpg" }, { label: "Xanh", image: "/images/v/pin-mipow-power-tube-pro-10000mah-2.jpg" }] },
     ],
     inStock: true,
   },
@@ -436,7 +437,7 @@ export const products: Product[] = [
       "Công nghệ GaN nhỏ gọn",
     ],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng" }] },
+      { name: "Màu sắc", options: [{ label: "Đen", image: "/images/v/cu-sac-voltme-revo-35-duo-c-a-2.jpg" }, { label: "Trắng", image: "/images/v/cu-sac-voltme-revo-35-duo-c-a-1.jpg" }] },
     ],
     inStock: true,
   },
@@ -450,7 +451,7 @@ export const products: Product[] = [
     warranty: "Liên hệ shop",
     features: ["2 cổng Type-C, sạc 2 máy cùng lúc", "Sạc nhanh PD tổng 35W"],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng" }] },
+      { name: "Màu sắc", options: [{ label: "Đen", image: "/images/v/cu-sac-voltme-revo-35-duo-lite-1.jpg" }, { label: "Trắng", image: "/images/v/cu-sac-voltme-revo-35-duo-lite-2.jpg" }] },
     ],
     inStock: true,
   },
@@ -464,7 +465,7 @@ export const products: Product[] = [
     warranty: "Liên hệ shop",
     features: ["Sạc nhanh 30W", "Công nghệ GaN III siêu nhỏ gọn"],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Trắng", soldOut: true }, { label: "Đen", soldOut: true }, { label: "Xám" }, { label: "Xanh dương" }, { label: "Xanh lá" }] },
+      { name: "Màu sắc", options: [{ label: "Trắng", image: "/images/v/cu-sac-voltme-revo-30-mini-1.jpg", soldOut: true }, { label: "Đen", image: "/images/v/cu-sac-voltme-revo-30-mini-2.jpg", soldOut: true }, { label: "Xám", image: "/images/v/cu-sac-voltme-revo-30-mini-4.jpg" }, { label: "Xanh dương", image: "/images/v/cu-sac-voltme-revo-30-mini-3.jpg" }, { label: "Xanh lá", image: "/images/v/cu-sac-voltme-revo-30-mini-5.jpg" }] },
     ],
     inStock: true,
   },
@@ -478,7 +479,7 @@ export const products: Product[] = [
     warranty: "Liên hệ shop",
     features: ["Sạc nhanh 30W", "Kích thước siêu nhỏ, bỏ túi dễ dàng"],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Xanh lá" }, { label: "Vàng" }, { label: "Hồng" }, { label: "Tím" }, { label: "Trắng", soldOut: true }, { label: "Đen", soldOut: true }, { label: "Xanh" }] },
+      { name: "Màu sắc", options: [{ label: "Xanh lá", image: "/images/v/cu-sac-voltme-revo-30-mini2-1.jpg" }, { label: "Vàng" }, { label: "Hồng", image: "/images/v/cu-sac-voltme-revo-30-mini2-3.jpg" }, { label: "Tím", image: "/images/v/cu-sac-voltme-revo-30-mini2-2.jpg" }, { label: "Trắng", soldOut: true }, { label: "Đen", soldOut: true }, { label: "Xanh" }] },
     ],
     inStock: true,
   },
@@ -496,7 +497,7 @@ export const products: Product[] = [
       "Chân tròn cắm vừa ổ điện Việt Nam",
     ],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen", soldOut: true }, { label: "Trắng", soldOut: true }, { label: "Xanh" }, { label: "Ghi", soldOut: true }, { label: "Xanh lá" }] },
+      { name: "Màu sắc", options: [{ label: "Đen", image: "/images/v/cu-sac-voltme-revo-30-mini-chan-tron-1.jpg", soldOut: true }, { label: "Trắng", soldOut: true }, { label: "Xanh" }, { label: "Ghi", soldOut: true }, { label: "Xanh lá" }] },
     ],
     inStock: true,
   },
@@ -550,7 +551,7 @@ export const products: Product[] = [
     features: ["Sạc nhanh 45W", "Công nghệ GaN nhỏ gọn", "Hàng chính hãng Joyroom"],
     note: "Ảnh minh họa.",
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen", soldOut: true }, { label: "Trắng", soldOut: true }, { label: "Hồng" }] },
+      { name: "Màu sắc", options: [{ label: "Đen", image: "/images/v/cu-sac-joyroom-45w-jr-tcg12-1.jpg", soldOut: true }, { label: "Trắng", soldOut: true }, { label: "Hồng", image: "/images/v/cu-sac-joyroom-45w-jr-tcg12-2.jpg" }] },
     ],
     inStock: true,
   },
@@ -565,7 +566,7 @@ export const products: Product[] = [
     features: ["2 cổng Type-C, sạc 2 máy cùng lúc", "Sạc nhanh 40W, công nghệ GaN"],
     note: "Hàng không hộp.",
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng xanh" }] },
+      { name: "Màu sắc", options: [{ label: "Đen", image: "/images/v/cu-sac-wekome-40w-wp-u14-1.jpg" }, { label: "Trắng xanh" }] },
     ],
     inStock: true,
   },
@@ -599,7 +600,7 @@ export const products: Product[] = [
     note: "Hàng Amazon. Ảnh minh họa.",
     variants: [
       { name: "Độ dài dây", options: [{ label: "1,8m", price: 251000 }, { label: "3m", price: 289000 }, { label: "6m", price: 326000 }] },
-      { name: "Màu sắc", options: [{ label: "Xanh dương" }, { label: "Xanh lá" }, { label: "Đỏ" }] },
+      { name: "Màu sắc", options: [{ label: "Xanh dương", image: "/images/v/o-dien-da-nang-sharoher-1.jpg" }, { label: "Xanh lá", image: "/images/v/o-dien-da-nang-sharoher-2.jpg" }, { label: "Đỏ", image: "/images/v/o-dien-da-nang-sharoher-3.jpg" }] },
     ],
     inStock: true,
   },
@@ -657,7 +658,7 @@ export const products: Product[] = [
       "Kèm Hub Gateway",
     ],
     variants: [
-      { name: "Phân loại", options: [{ label: "Bộ camera + Hub", price: 869000 }, { label: "Tấm pin năng lượng mặt trời", price: 200000 }] },
+      { name: "Phân loại", options: [{ label: "Bộ camera + Hub", image: "/images/v/camera-xiaomi-imilab-ec4-1.jpg", price: 869000 }, { label: "Tấm pin năng lượng mặt trời", image: "/images/v/camera-xiaomi-imilab-ec4-2.jpg", price: 200000 }] },
     ],
     inStock: true,
   },
@@ -671,7 +672,7 @@ export const products: Product[] = [
     warranty: "Liên hệ shop",
     features: ["Quay phim 4K", "Gimbal chống rung 3 trục", "Hợp quay vlog, TikTok"],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Xanh" }, { label: "Đen", soldOut: true }] },
+      { name: "Màu sắc", options: [{ label: "Xanh", image: "/images/v/camera-gimbal-xiaomi-90fun-capture-1-1.jpg" }, { label: "Đen", image: "/images/v/camera-gimbal-xiaomi-90fun-capture-1-2.jpg", soldOut: true }] },
     ],
     inStock: true,
   },
@@ -686,7 +687,7 @@ export const products: Product[] = [
     features: ["Quay phim 4K", "Gimbal chống rung 3 trục", "Hợp quay vlog, TikTok"],
     note: "Bản nội địa.",
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Xanh", soldOut: true }] },
+      { name: "Màu sắc", options: [{ label: "Đen", image: "/images/gimbal-morange.jpg" }, { label: "Xanh", soldOut: true }] },
     ],
     inStock: true,
   },
@@ -828,7 +829,7 @@ export const products: Product[] = [
       "Vải kháng khuẩn, nhiều hoạ tiết cho bé",
     ],
     variants: [
-      { name: "Mẫu", options: [{ label: "Cô Tiên", soldOut: true }, { label: "Hươu" }, { label: "Khủng Long", soldOut: true }, { label: "Lợn Peppa" }] },
+      { name: "Mẫu", options: [{ label: "Cô Tiên", image: "/images/v/ghe-o-to-popmax-pm2102-0-36kg-2.jpg", soldOut: true }, { label: "Hươu", image: "/images/v/ghe-o-to-popmax-pm2102-0-36kg-1.jpg" }, { label: "Khủng Long", image: "/images/v/ghe-o-to-popmax-pm2102-0-36kg-3.jpg", soldOut: true }, { label: "Lợn Peppa" }] },
     ],
     inStock: true,
   },
@@ -863,7 +864,7 @@ export const products: Product[] = [
     ],
     note: "Không có khoá ISOFIX.",
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen – đỏ" }, { label: "Vàng – nâu", soldOut: true }] },
+      { name: "Màu sắc", options: [{ label: "Đen – đỏ", image: "/images/v/ghe-o-to-htt-lm211-0-4-tuoi-1.jpg" }, { label: "Vàng – nâu", image: "/images/v/ghe-o-to-htt-lm211-0-4-tuoi-2.jpg", soldOut: true }] },
     ],
     inStock: true,
   },
@@ -882,7 +883,7 @@ export const products: Product[] = [
     ],
     variants: [
       { name: "Loại", options: [{ label: "Có khoá ISOFIX", price: 2885000 }, { label: "Không khoá ISOFIX", price: 2129000 }] },
-      { name: "Màu sắc", options: [{ label: "Đỏ" }, { label: "Đen" }, { label: "Hồng" }, { label: "Xanh" }] },
+      { name: "Màu sắc", options: [{ label: "Đỏ", image: "/images/v/ghe-o-to-cybex-aura-fix-2.jpg" }, { label: "Đen", image: "/images/v/ghe-o-to-cybex-aura-fix-4.jpg" }, { label: "Hồng", image: "/images/v/ghe-o-to-cybex-aura-fix-3.jpg" }, { label: "Xanh", image: "/images/ghe-cybex-aura-fix.jpg" }] },
     ],
     inStock: true,
   },
@@ -915,7 +916,7 @@ export const products: Product[] = [
       "4 nấc ngả lưng, cho bé sơ sinh đến 4 tuổi",
     ],
     variants: [
-      { name: "Màu sắc", options: [{ label: "Đen xám" }, { label: "Đỏ cam" }] },
+      { name: "Màu sắc", options: [{ label: "Đen xám", image: "/images/v/ghe-o-to-apramo-metro-hub-xoay-360-1.jpg" }, { label: "Đỏ cam", image: "/images/v/ghe-o-to-apramo-metro-hub-xoay-360-2.jpg" }] },
     ],
     inStock: true,
   },
