@@ -5,6 +5,7 @@ import { Product, formatPrice, priceRange } from "@/data/products";
 import { shop, zaloUrl, telUrl, orderMessage } from "@/lib/config";
 import CopyOrderLink from "./CopyOrderLink";
 import { GALLERY_EVENT } from "./ProductGallery";
+import { CartPlus } from "./Icons";
 
 // Giá + chọn phân loại + nút đặt hàng. children = phần mô tả nằm giữa giá và nút.
 export default function BuyBox({ product, children }: { product: Product; children: React.ReactNode }) {
@@ -66,7 +67,7 @@ export default function BuyBox({ product, children }: { product: Product; childr
       )}
       <div className="order-buttons">
         <CopyOrderLink className="btn btn-primary btn-xl" href={shop.messenger} message={message} canOrder={canOrder}>
-          Đặt hàng qua Messenger
+          <CartPlus size={22} /> Đặt hàng qua Messenger
         </CopyOrderLink>
         <div className="order-row">
           {zaloUrl && (

@@ -4,26 +4,19 @@ import { categories } from "@/data/products";
 import { policies } from "@/data/policies";
 import { Bolt, Menu } from "./Icons";
 import SearchBox from "./SearchBox";
+import NavLinks from "./NavLinks";
 
 export default function Header() {
   return (
     <>
-      <div className="topbar">
-        <span className="topbar-full">{shop.policies.join(" · ")}</span>
-        <span className="topbar-short">{shop.policies.slice(0, 2).join(" · ")}</span>
-      </div>
       <header className="header">
         <div className="container header-inner">
           <Link href="/" className="logo">
-            <Bolt size={26} className="logo-bolt" /> {shop.name}
+            <span className="logo-mark"><Bolt size={22} /></span>
+            <span className="logo-text">{shop.name}</span>
           </Link>
-          <SearchBox className="search search-dark" placeholder="Tìm pin dự phòng, củ sạc, cáp..." />
-          <div className="header-actions">
-            {zaloUrl && (
-              <a className="btn btn-zalo" href={zaloUrl} target="_blank" rel="noopener noreferrer">Chat Zalo</a>
-            )}
-            <a className="btn btn-primary" href={shop.messenger} target="_blank" rel="noopener noreferrer">Nhắn Messenger</a>
-          </div>
+          <NavLinks />
+          <SearchBox className="search search-dark" placeholder="Tìm sản phẩm..." />
           <details className="mobile-menu">
             <summary aria-label="Mở menu"><Menu /></summary>
             <nav className="mobile-menu-panel">
