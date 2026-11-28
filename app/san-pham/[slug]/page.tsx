@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { products, getProduct, formatPrice, categoryLabel } from "@/data/products";
+import { products, getProduct, formatPrice, categoryLabel, priceRange, type Product } from "@/data/products";
+import { shop, siteUrl } from "@/lib/config";
 import BuyBox from "@/components/BuyBox";
 import ProductGallery from "@/components/ProductGallery";
 import ProductCard from "@/components/ProductCard";
@@ -20,8 +21,50 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: p.shortName,
     description: `${p.name} – ${formatPrice(p.price)}. ${p.features.join(". ")}.`,
+    alternates: { canonical: `/san-pham/${p.slug}` },
     openGraph: { images: [p.image] },
   };
+}
+
+// Dữ liệu cho Google: tên, ảnh, giá, còn hàng. Giúp kết quả tìm kiếm hiện giá và "Còn hàng".
+function productJsonLd(p: Product, images: string[]) {
+  const url = `${siteUrl}/san-pham/${p.slug}`;
+  const [low, high] = priceRange(p);
+  const availability = !p.inStock
+    ? "https://schema.org/OutOfStock"
+    : p.preorder
+      ? "https://schema.org/PreOrder"
+      : "https://schema.org/InStock";
+  const offer = {
+    priceCurrency: "VND",
+    availability,
+    url,
+    seller: { "@type": "Organization", name: shop.name },
+  };
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: p.name,
+      image: images.map((i) => siteUrl + i),
+      description: p.features.join(". "),
+      sku: p.slug,
+      category: categoryLabel(p.category),
+      offers:
+        low === high
+          ? { "@type": "Offer", price: low, ...offer }
+          : { "@type": "AggregateOffer", lowPrice: low, highPrice: high, offerCount: (p.variants ?? []).flatMap((g) => g.options).length, ...offer },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Trang chủ", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: categoryLabel(p.category), item: `${siteUrl}/?cat=${p.category}` },
+        { "@type": "ListItem", position: 3, name: p.shortName, item: url },
+      ],
+    },
+  ];
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -35,6 +78,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <div className="container section">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd(p, gallery)) }} />
       <nav className="crumbs">
         <Link href="/">Trang chủ</Link> / <Link href={`/?cat=${p.category}#san-pham`}>{categoryLabel(p.category)}</Link> / <span>{p.shortName}</span>
       </nav>

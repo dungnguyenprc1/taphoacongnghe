@@ -16,6 +16,9 @@ export const shop = {
   ],
 };
 
+// Địa chỉ chính thức của web (có www). Dùng cho sitemap, canonical, dữ liệu cho Google.
+export const siteUrl = `https://www.${shop.domain}`;
+
 const digits = (s: string) => s.replace(/\D/g, "");
 
 export const zaloUrl = shop.zalo ? `https://zalo.me/${digits(shop.zalo)}` : "";
@@ -25,7 +28,7 @@ export const telUrl = shop.phone ? `tel:${digits(shop.phone)}` : "";
 export function orderMessage(p: { slug: string; name: string; price: number }, variant?: string) {
   const price = p.price.toLocaleString("vi-VN") + "đ";
   const v = variant ? ` (${variant})` : "";
-  return `Mình muốn đặt: ${p.name}${v} – ${price}\nhttps://www.${shop.domain}/san-pham/${p.slug}`;
+  return `Mình muốn đặt: ${p.name}${v} – ${price}\n${siteUrl}/san-pham/${p.slug}`;
 }
 
 // 0369680613 -> "0369 680 613"
