@@ -1,40 +1,30 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { shop } from "@/lib/config";
+import { Inter } from "next/font/google";
+import { shop, zaloUrl } from "@/lib/config";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
+const inter = Inter({ subsets: ["latin", "vietnamese"], display: "swap" });
+
 export const metadata: Metadata = {
+  metadataBase: new URL(`https://www.${shop.domain}`),
   title: { default: `${shop.name} – ${shop.tagline}`, template: `%s | ${shop.name}` },
   description: "Phụ kiện công nghệ giá kho: pin dự phòng, củ sạc nhanh, cáp sạc, mic không dây. Ship COD toàn quốc.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="vi">
+    <html lang="vi" className={inter.className}>
       <body>
-        <header className="header">
-          <div className="container header-inner">
-            <Link href="/" className="logo">
-              <span className="bolt">⚡</span> {shop.name}
-            </Link>
-            <a className="btn btn-primary btn-sm" href={shop.messenger} target="_blank" rel="noopener noreferrer">
-              Nhắn tin
-            </a>
-          </div>
-        </header>
+        <Header />
         <main>{children}</main>
-        <footer className="footer">
-          <div className="container">
-            <p><strong>{shop.name}</strong> · {shop.tagline}</p>
-            <ul>
-              {shop.policies.map((p) => <li key={p}>{p}</li>)}
-            </ul>
-            <p>
-              <a href={shop.facebook} target="_blank" rel="noopener noreferrer">Fanpage Facebook</a>
-              {shop.phone && <> · Hotline: {shop.phone}</>}
-            </p>
-          </div>
-        </footer>
+        <Footer />
+        {/* Thanh liên hệ cố định ở đáy màn hình điện thoại */}
+        <div className="mobile-bar">
+          {zaloUrl && <a className="btn btn-zalo" href={zaloUrl} target="_blank" rel="noopener noreferrer">Chat Zalo</a>}
+          <a className="btn btn-primary" href={shop.messenger} target="_blank" rel="noopener noreferrer">Messenger</a>
+        </div>
       </body>
     </html>
   );

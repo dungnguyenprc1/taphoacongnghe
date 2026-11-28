@@ -2,15 +2,27 @@
 export const shop = {
   name: "Điện Tử Giá Kho",
   tagline: "Phụ kiện công nghệ giá kho — sạc, cáp, pin, mic",
+  domain: "dientugiakho.com",
   // Link Messenger của Trang. Có thể đổi thành https://m.me/<tên-trang> cho đẹp.
   messenger: "https://m.me/997730426752659",
   facebook: "https://www.facebook.com/997730426752659",
-  // Điền số Zalo / điện thoại thật. Để trống thì nút tương ứng tự ẩn.
-  zalo: "", // ví dụ: "0912345678"
-  phone: "",
+  // Số Zalo / điện thoại. Để trống thì nút tương ứng tự ẩn.
+  zalo: "0369680613",
+  phone: "0369680613",
   policies: [
-    "Ship COD toàn quốc, nhận hàng rồi thanh toán",
-    "Được kiểm tra hàng trước khi nhận",
+    "Ship COD toàn quốc",
+    "Kiểm tra hàng trước khi nhận",
     "Bảo hành theo từng sản phẩm",
   ],
 };
+
+const digits = (s: string) => s.replace(/\D/g, "");
+
+export const zaloUrl = shop.zalo ? `https://zalo.me/${digits(shop.zalo)}` : "";
+export const telUrl = shop.phone ? `tel:${digits(shop.phone)}` : "";
+
+// 0369680613 -> "0369 680 613"
+export function prettyPhone(s: string) {
+  const d = digits(s);
+  return d.length === 10 ? `${d.slice(0, 4)} ${d.slice(4, 7)} ${d.slice(7)}` : s;
+}

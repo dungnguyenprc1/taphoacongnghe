@@ -12,6 +12,7 @@ export type Product = {
   features: string[];
   note?: string; // lưu ý cho khách: không hộp, hàng order, màu ngẫu nhiên...
   preorder?: string; // ngày hàng về nếu là hàng order
+  badge?: string; // nhãn nhỏ trên ảnh: "Bán chạy", "Mới", "Quà tặng"...
   inStock: boolean;
 };
 
@@ -36,6 +37,7 @@ export const products: Product[] = [
   },
   {
     slug: "bo-qua-baseus-limited-edition",
+    badge: "Quà tặng",
     name: "Bộ quà tặng Baseus Limited Edition 4 món",
     shortName: "Bộ quà Baseus Limited",
     price: 755000,
@@ -67,6 +69,7 @@ export const products: Product[] = [
   },
   {
     slug: "pin-du-phong-20000mah-kem-2-cap",
+    badge: "Bán chạy",
     name: "Pin dự phòng 20.000mAh sạc nhanh 30W, tích hợp 2 cáp",
     shortName: "Pin 20.000mAh kèm 2 cáp",
     price: 377000,
@@ -143,6 +146,7 @@ export const products: Product[] = [
   },
   {
     slug: "cu-sac-voltme-revo-35-duo",
+    badge: "Mới",
     name: "Củ sạc nhanh VOLTME Revo 35 Duo GaN 35W, 2 cổng USB-C",
     shortName: "Củ sạc VOLTME 35W",
     price: 150000,
@@ -685,15 +689,36 @@ export const products: Product[] = [
   },
 ];
 
-export const categories: { id: Product["category"] | "all"; label: string }[] = [
-  { id: "all", label: "Tất cả" },
-  { id: "pin", label: "Pin & trạm sạc" },
-  { id: "sac-cap", label: "Củ sạc, cáp & ổ điện" },
-  { id: "camera", label: "Camera & gimbal" },
-  { id: "dong-ho", label: "Đồng hồ thông minh" },
-  { id: "am-thanh", label: "Âm thanh" },
-  { id: "tien-ich", label: "Tiện ích" },
+export const categories: { id: Product["category"] | "all"; label: string; short: string }[] = [
+  { id: "all", label: "Tất cả", short: "Tất cả" },
+  { id: "pin", label: "Pin & trạm sạc", short: "Pin" },
+  { id: "sac-cap", label: "Củ sạc, cáp & ổ điện", short: "Củ sạc" },
+  { id: "camera", label: "Camera & gimbal", short: "Camera" },
+  { id: "dong-ho", label: "Đồng hồ", short: "Đồng hồ" },
+  { id: "am-thanh", label: "Âm thanh", short: "Âm thanh" },
+  { id: "tien-ich", label: "Tiện ích", short: "Tiện ích" },
 ];
+
+export function categoryLabel(id: Product["category"]) {
+  return categories.find((c) => c.id === id)?.label ?? "";
+}
+
+// Sản phẩm nổi bật trên trang chủ, theo đúng thứ tự này.
+export const featuredSlugs = [
+  "pin-du-phong-20000mah-kem-2-cap",
+  "cu-sac-voltme-revo-35-duo",
+  "pin-magsafe-nohon-10000mah",
+  "mic-khong-day-ugreen-mic-6",
+  "pin-du-phong-energyqc-72000mah-130w",
+  "may-phien-dich-enence",
+  "bo-qua-baseus-limited-edition",
+  "o-sac-cuky-4-cong",
+];
+
+// Nhãn hiển thị trên ảnh sản phẩm.
+export function productBadge(p: Product) {
+  return p.preorder ? "Hàng order" : p.badge;
+}
 
 export function getProduct(slug: string) {
   return products.find((p) => p.slug === slug);
