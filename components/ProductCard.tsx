@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Product, formatPrice, productBadge } from "@/data/products";
-import { shop } from "@/lib/config";
+import { shop, orderMessage } from "@/lib/config";
+import CopyOrderLink from "./CopyOrderLink";
 
 export default function ProductCard({ product }: { product: Product }) {
   const badge = productBadge(product);
@@ -16,7 +17,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <h3><Link href={href}>{product.name}</Link></h3>
         <p className="price">{formatPrice(product.price)}</p>
         <p className="card-warranty">BH {product.warranty}</p>
-        <a className="btn btn-dark" href={shop.messenger} target="_blank" rel="noopener noreferrer">Đặt qua Messenger</a>
+        <CopyOrderLink className="btn btn-dark" href={shop.messenger} message={orderMessage(product)}>Đặt qua Messenger</CopyOrderLink>
       </div>
     </div>
   );

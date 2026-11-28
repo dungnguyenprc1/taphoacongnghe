@@ -1,22 +1,25 @@
-import { shop, zaloUrl, telUrl } from "@/lib/config";
+import { shop, zaloUrl, telUrl, orderMessage } from "@/lib/config";
+import { Product } from "@/data/products";
+import CopyOrderLink from "./CopyOrderLink";
 
-export default function OrderButtons({ productName }: { productName?: string }) {
+export default function OrderButtons({ product }: { product: Product }) {
+  const message = orderMessage(product);
   return (
     <div className="order-buttons">
-      <a className="btn btn-primary btn-xl" href={shop.messenger} target="_blank" rel="noopener noreferrer">
+      <CopyOrderLink className="btn btn-primary btn-xl" href={shop.messenger} message={message}>
         Đặt hàng qua Messenger
-      </a>
+      </CopyOrderLink>
       <div className="order-row">
         {zaloUrl && (
-          <a className="btn btn-zalo btn-lg" href={zaloUrl} target="_blank" rel="noopener noreferrer">Chat Zalo</a>
+          <CopyOrderLink className="btn btn-zalo btn-lg" href={zaloUrl} message={message}>
+            Chat Zalo
+          </CopyOrderLink>
         )}
         {telUrl && <a className="btn btn-outline btn-lg" href={telUrl}>Gọi điện</a>}
       </div>
-      {productName && (
-        <p className="order-hint">
-          Nhắn tên sản phẩm “{productName}” để được báo phí ship và chốt đơn.
-        </p>
-      )}
+      <p className="order-hint">
+        Bấm đặt hàng là thông tin sản phẩm (kèm hình) được copy sẵn — vào khung chat chỉ cần <b>Dán</b> rồi <b>Gửi</b>.
+      </p>
     </div>
   );
 }

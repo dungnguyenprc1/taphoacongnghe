@@ -59,7 +59,7 @@ export default async function ProductPage({ params }: Props) {
             <div><dt>Giao hàng</dt><dd>COD toàn quốc</dd></div>
             <div><dt>Đổi trả</dt><dd>Kiểm tra trước khi nhận</dd></div>
           </dl>
-          <OrderButtons productName={p.shortName} />
+          <OrderButtons product={p} />
         </div>
       </div>
       {related.length > 0 && (

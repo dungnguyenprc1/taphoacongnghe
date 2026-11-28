@@ -291,3 +291,14 @@ h2 { font-size: 1.6rem; font-weight: 800; }
   .mobile-bar .btn { padding: 14px; border-radius: 12px; font-size: 1rem; }
   .mobile-bar .btn:only-child { grid-column: 1 / -1; }
 }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 50;
+  background: var(--navy); color: #fff; padding: 12px 18px; border-radius: 12px; font-size: .9rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3); width: max-content; max-width: calc(100vw - 32px);
+  animation: toast-in .2s ease-out;
+}
+.toast b { color: var(--yellow); }
+@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } }
+@media (max-width: 860px) { .toast { bottom: 92px; } }

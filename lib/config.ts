@@ -21,6 +21,12 @@ const digits = (s: string) => s.replace(/\D/g, "");
 export const zaloUrl = shop.zalo ? `https://zalo.me/${digits(shop.zalo)}` : "";
 export const telUrl = shop.phone ? `tel:${digits(shop.phone)}` : "";
 
+// Nội dung copy sẵn khi khách bấm đặt hàng. Để link ở cuối để Messenger/Zalo hiện thẻ có ảnh.
+export function orderMessage(p: { slug: string; name: string; price: number }) {
+  const price = p.price.toLocaleString("vi-VN") + "đ";
+  return `Mình muốn đặt: ${p.name} – ${price}\nhttps://www.${shop.domain}/san-pham/${p.slug}`;
+}
+
 // 0369680613 -> "0369 680 613"
 export function prettyPhone(s: string) {
   const d = digits(s);
