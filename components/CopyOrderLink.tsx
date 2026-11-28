@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 
 // Nút mở Messenger/Zalo, đồng thời copy sẵn tên + giá + link sản phẩm.
 // Khách chỉ cần Dán rồi Gửi; link sẽ tự hiện thẻ có ảnh sản phẩm trong khung chat.
-export default function CopyOrderLink({ href, message, className, children }: {
+export default function CopyOrderLink({ href, message, className, children, canOrder }: {
   href: string;
   message: string;
   className: string;
   children: React.ReactNode;
+  canOrder?: () => boolean; // trả về false để chặn (vd: chưa chọn phân loại)
 }) {
   const [toast, setToast] = useState(false);
 
@@ -18,7 +19,11 @@ export default function CopyOrderLink({ href, message, className, children }: {
     return () => clearTimeout(t);
   }, [toast]);
 
-  const copy = () => {
+  const copy = (e: React.MouseEvent) => {
+    if (canOrder && !canOrder()) {
+      e.preventDefault();
+      return;
+    }
     // Không chặn mở link: copy chạy song song trong cùng lượt bấm.
     const done = () => setToast(true);
     if (navigator.clipboard?.writeText) {

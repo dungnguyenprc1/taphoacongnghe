@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Product, formatPrice, productBadge } from "@/data/products";
+import { Product, formatPrice, productBadge, priceRange } from "@/data/products";
 import { shop, orderMessage } from "@/lib/config";
 import CopyOrderLink from "./CopyOrderLink";
 
 export default function ProductCard({ product }: { product: Product }) {
   const badge = productBadge(product);
   const href = `/san-pham/${product.slug}`;
+  const [min, max] = priceRange(product);
   return (
     <div className="card">
       <Link href={href} className="card-img">
@@ -15,9 +16,9 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="card-body">
         <h3><Link href={href}>{product.name}</Link></h3>
-        <p className="price">{formatPrice(product.price)}</p>
+        <p className="price">{min !== max && <span className="price-from">Từ </span>}{formatPrice(min)}</p>
         <p className="card-warranty">BH {product.warranty}</p>
-        <CopyOrderLink className="btn btn-dark" href={shop.messenger} message={orderMessage(product)}>Đặt qua Messenger</CopyOrderLink>
+        <CopyOrderLink className="btn btn-dark" href={shop.messenger} message={orderMessage({ ...product, price: min })}>Đặt qua Messenger</CopyOrderLink>
       </div>
     </div>
   );

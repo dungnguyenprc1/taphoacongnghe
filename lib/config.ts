@@ -22,9 +22,10 @@ export const zaloUrl = shop.zalo ? `https://zalo.me/${digits(shop.zalo)}` : "";
 export const telUrl = shop.phone ? `tel:${digits(shop.phone)}` : "";
 
 // Nội dung copy sẵn khi khách bấm đặt hàng. Để link ở cuối để Messenger/Zalo hiện thẻ có ảnh.
-export function orderMessage(p: { slug: string; name: string; price: number }) {
+export function orderMessage(p: { slug: string; name: string; price: number }, variant?: string) {
   const price = p.price.toLocaleString("vi-VN") + "đ";
-  return `Mình muốn đặt: ${p.name} – ${price}\nhttps://www.${shop.domain}/san-pham/${p.slug}`;
+  const v = variant ? ` (${variant})` : "";
+  return `Mình muốn đặt: ${p.name}${v} – ${price}\nhttps://www.${shop.domain}/san-pham/${p.slug}`;
 }
 
 // 0369680613 -> "0369 680 613"

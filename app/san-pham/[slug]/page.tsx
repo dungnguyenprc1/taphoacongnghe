@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products, getProduct, formatPrice, categoryLabel } from "@/data/products";
-import OrderButtons from "@/components/OrderButtons";
+import BuyBox from "@/components/BuyBox";
 import ProductCard from "@/components/ProductCard";
 import { Check } from "@/components/Icons";
 
@@ -45,7 +45,7 @@ export default async function ProductPage({ params }: Props) {
         <div className="detail-info">
           <span className={`status ${p.inStock || p.preorder ? "" : "status-out"}`}>{status}</span>
           <h1>{p.name}</h1>
-          <p className="price big">{formatPrice(p.price)}</p>
+          <BuyBox product={p}>
           <hr />
           {p.preorder && <p className="notice">⏳ {p.preorder} — nhận cọc giữ hàng</p>}
           <ul className="features">
@@ -59,7 +59,7 @@ export default async function ProductPage({ params }: Props) {
             <div><dt>Giao hàng</dt><dd>COD toàn quốc</dd></div>
             <div><dt>Đổi trả</dt><dd>Kiểm tra trước khi nhận</dd></div>
           </dl>
-          <OrderButtons product={p} />
+          </BuyBox>
         </div>
       </div>
       {related.length > 0 && (

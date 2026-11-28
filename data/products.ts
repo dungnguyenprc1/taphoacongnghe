@@ -14,7 +14,13 @@ export type Product = {
   preorder?: string; // ngày hàng về nếu là hàng order
   badge?: string; // nhãn nhỏ trên ảnh: "Bán chạy", "Mới", "Quà tặng"...
   inStock: boolean;
+  // Phân loại (màu, mẫu, loại...). Khách phải chọn đủ mỗi nhóm trước khi đặt.
+  // price của lựa chọn (nếu có) thay cho giá gốc; soldOut = lựa chọn đó hết hàng.
+  variants?: VariantGroup[];
 };
+
+export type VariantOption = { label: string; price?: number; soldOut?: boolean };
+export type VariantGroup = { name: string; options: VariantOption[] };
 
 // Ảnh tạm cho sản phẩm chưa có ảnh. Có ảnh thật thì đặt vào public/images/ và sửa đường dẫn.
 const ANH_TAM = "/images/dang-cap-nhat.svg";
@@ -82,6 +88,9 @@ export const products: Product[] = [
       "Sản xuất tại nhà máy gia công cho Anker",
     ],
     note: "Hàng không hộp, chưa in logo. Ảnh minh họa.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Hồng", soldOut: true }, { label: "Xanh dương", soldOut: true }, { label: "Xanh lá" }, { label: "Tím", soldOut: true }, { label: "Đen", soldOut: true }] },
+    ],
     inStock: true,
   },
   {
@@ -110,6 +119,9 @@ export const products: Product[] = [
     features: [
       "1 dây sạc được iPhone, Android, tai nghe, loa",
       "Tiện để trong xe, văn phòng, balo",
+    ],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng" }, { label: "Đỏ" }, { label: "Tím" }, { label: "Xanh lá" }, { label: "Xanh dương" }, { label: "Vàng champagne" }] },
     ],
     inStock: true,
   },
@@ -159,6 +171,9 @@ export const products: Product[] = [
       "Công nghệ GaN nhỏ gọn, ít nóng",
     ],
     note: "Ảnh minh họa.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Trắng" }, { label: "Đen" }] },
+    ],
     inStock: true,
   },
   {
@@ -208,6 +223,9 @@ export const products: Product[] = [
       "Sản xuất tại nhà máy gia công cho Anker",
     ],
     note: "Hàng không hộp, chưa in logo.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Hồng" }, { label: "Xanh dương", soldOut: true }, { label: "Xanh lá" }, { label: "Tím" }, { label: "Đen", soldOut: true }] },
+    ],
     inStock: true,
   },
   {
@@ -224,6 +242,9 @@ export const products: Product[] = [
       "Sản xuất tại nhà máy gia công cho Anker",
     ],
     note: "Hàng không hộp, chưa in logo.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng", soldOut: true }, { label: "Hồng" }, { label: "Xanh", soldOut: true }] },
+    ],
     inStock: true,
   },
   {
@@ -313,6 +334,9 @@ export const products: Product[] = [
       "Sạc không dây MagSafe",
       "Sạc nhanh 20W",
     ],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng" }] },
+    ],
     inStock: true,
   },
   {
@@ -328,6 +352,9 @@ export const products: Product[] = [
       "Sạc nhanh 20W",
       "Sạc được cả Apple Watch",
     ],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đỏ" }, { label: "Xanh" }] },
+    ],
     inStock: true,
   },
   {
@@ -342,6 +369,9 @@ export const products: Product[] = [
       "Vừa làm tay cầm vừa sạc cho DJI Pocket 3 / Pocket 4",
       "Dung lượng 10.000mAh, quay lâu hơn",
       "Sạc nhanh 22.5W",
+    ],
+    variants: [
+      { name: "Dung lượng", options: [{ label: "5.000mAh", price: 629000, soldOut: true }, { label: "10.000mAh", price: 755000 }] },
     ],
     inStock: true,
   },
@@ -405,6 +435,9 @@ export const products: Product[] = [
       "Sạc nhanh PD 3.0",
       "Công nghệ GaN nhỏ gọn",
     ],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng" }] },
+    ],
     inStock: true,
   },
   {
@@ -416,6 +449,9 @@ export const products: Product[] = [
     category: "sac-cap",
     warranty: "Liên hệ shop",
     features: ["2 cổng Type-C, sạc 2 máy cùng lúc", "Sạc nhanh PD tổng 35W"],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng" }] },
+    ],
     inStock: true,
   },
   {
@@ -427,6 +463,9 @@ export const products: Product[] = [
     category: "sac-cap",
     warranty: "Liên hệ shop",
     features: ["Sạc nhanh 30W", "Công nghệ GaN III siêu nhỏ gọn"],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Trắng", soldOut: true }, { label: "Đen", soldOut: true }, { label: "Xám" }, { label: "Xanh dương" }, { label: "Xanh lá" }] },
+    ],
     inStock: true,
   },
   {
@@ -438,6 +477,9 @@ export const products: Product[] = [
     category: "sac-cap",
     warranty: "Liên hệ shop",
     features: ["Sạc nhanh 30W", "Kích thước siêu nhỏ, bỏ túi dễ dàng"],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Xanh lá" }, { label: "Vàng" }, { label: "Hồng" }, { label: "Tím" }, { label: "Trắng", soldOut: true }, { label: "Đen", soldOut: true }, { label: "Xanh" }] },
+    ],
     inStock: true,
   },
   {
@@ -452,6 +494,9 @@ export const products: Product[] = [
       "Sạc nhanh PD 30W",
       "Công nghệ GaN III nhỏ gọn",
       "Chân tròn cắm vừa ổ điện Việt Nam",
+    ],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen", soldOut: true }, { label: "Trắng", soldOut: true }, { label: "Xanh" }, { label: "Ghi", soldOut: true }, { label: "Xanh lá" }] },
     ],
     inStock: true,
   },
@@ -504,6 +549,9 @@ export const products: Product[] = [
     warranty: "Liên hệ shop",
     features: ["Sạc nhanh 45W", "Công nghệ GaN nhỏ gọn", "Hàng chính hãng Joyroom"],
     note: "Ảnh minh họa.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen", soldOut: true }, { label: "Trắng", soldOut: true }, { label: "Hồng" }] },
+    ],
     inStock: true,
   },
   {
@@ -516,6 +564,9 @@ export const products: Product[] = [
     warranty: "Liên hệ shop",
     features: ["2 cổng Type-C, sạc 2 máy cùng lúc", "Sạc nhanh 40W, công nghệ GaN"],
     note: "Hàng không hộp.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Trắng xanh" }] },
+    ],
     inStock: true,
   },
   {
@@ -546,6 +597,10 @@ export const products: Product[] = [
       "Gọn gàng cho bàn làm việc, đầu giường",
     ],
     note: "Hàng Amazon. Ảnh minh họa.",
+    variants: [
+      { name: "Độ dài dây", options: [{ label: "1,8m", price: 251000 }, { label: "3m", price: 289000 }, { label: "6m", price: 326000 }] },
+      { name: "Màu sắc", options: [{ label: "Xanh dương" }, { label: "Xanh lá" }, { label: "Đỏ" }] },
+    ],
     inStock: true,
   },
 
@@ -592,7 +647,7 @@ export const products: Product[] = [
     slug: "camera-xiaomi-imilab-ec4",
     name: "Bộ camera Xiaomi IMILAB EC4 2.5K (bản quốc tế), pin 5200mAh, kèm Hub Gateway",
     shortName: "Camera Xiaomi IMILAB EC4",
-    price: 200000,
+    price: 869000,
     image: "/images/camera-imilab-ec4.png",
     category: "camera",
     warranty: "Liên hệ shop",
@@ -600,6 +655,9 @@ export const products: Product[] = [
       "Độ nét 2.5K, bản quốc tế",
       "Pin 5200mAh, không cần đi dây điện",
       "Kèm Hub Gateway",
+    ],
+    variants: [
+      { name: "Phân loại", options: [{ label: "Bộ camera + Hub", price: 869000 }, { label: "Tấm pin năng lượng mặt trời", price: 200000 }] },
     ],
     inStock: true,
   },
@@ -612,6 +670,9 @@ export const products: Product[] = [
     category: "camera",
     warranty: "Liên hệ shop",
     features: ["Quay phim 4K", "Gimbal chống rung 3 trục", "Hợp quay vlog, TikTok"],
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Xanh" }, { label: "Đen", soldOut: true }] },
+    ],
     inStock: true,
   },
   {
@@ -624,6 +685,9 @@ export const products: Product[] = [
     warranty: "Liên hệ shop",
     features: ["Quay phim 4K", "Gimbal chống rung 3 trục", "Hợp quay vlog, TikTok"],
     note: "Bản nội địa.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen" }, { label: "Xanh", soldOut: true }] },
+    ],
     inStock: true,
   },
 
@@ -763,7 +827,9 @@ export const products: Product[] = [
       "Khoá ISOFIX, bảo vệ va chạm hai bên",
       "Vải kháng khuẩn, nhiều hoạ tiết cho bé",
     ],
-    note: "Có mẫu Cô Tiên, Hươu, Khủng Long, Lợn Peppa — nhắn shop để chọn mẫu.",
+    variants: [
+      { name: "Mẫu", options: [{ label: "Cô Tiên", soldOut: true }, { label: "Hươu" }, { label: "Khủng Long", soldOut: true }, { label: "Lợn Peppa" }] },
+    ],
     inStock: true,
   },
   {
@@ -795,28 +861,15 @@ export const products: Product[] = [
       "3 nấc ngả lưng, dây đai 5 điểm",
       "Lắp bằng dây an toàn ô tô, vải tháo giặt được",
     ],
-    note: "Màu Đen–đỏ hoặc Vàng–nâu. Không có khoá ISOFIX.",
-    inStock: true,
-  },
-  {
-    slug: "ghe-o-to-cybex-aura-fix-isofix",
-    name: "Ghế ô tô trẻ em Cybex CBX Aura-Fix (Đức), 9 tháng–12 tuổi, có khoá ISOFIX",
-    shortName: "Ghế ô tô Cybex Aura-Fix ISOFIX",
-    price: 2885000,
-    image: "/images/ghe-cybex-aura-fix.jpg",
-    category: "ghe-o-to",
-    warranty: "12 tháng",
-    features: [
-      "Cho bé 9–36kg, dùng từ 9 tháng đến 12 tuổi",
-      "Bàn an toàn giảm lực lên cổ và cột sống",
-      "Đệm nâng tháo rời, chuẩn ECE R44/04",
+    note: "Không có khoá ISOFIX.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen – đỏ" }, { label: "Vàng – nâu", soldOut: true }] },
     ],
-    note: "Màu Đỏ, Đen, Hồng, Xanh — nhắn shop để chọn màu.",
     inStock: true,
   },
   {
     slug: "ghe-o-to-cybex-aura-fix",
-    name: "Ghế ô tô trẻ em Cybex CBX Aura-Fix (Đức), 9 tháng–12 tuổi, không khoá ISOFIX",
+    name: "Ghế ô tô trẻ em Cybex CBX Aura-Fix (Đức), 9 tháng–12 tuổi",
     shortName: "Ghế ô tô Cybex Aura-Fix",
     price: 2129000,
     image: "/images/ghe-cybex-aura-fix.jpg",
@@ -825,9 +878,12 @@ export const products: Product[] = [
     features: [
       "Cho bé 9–36kg, dùng từ 9 tháng đến 12 tuổi",
       "Bàn an toàn giảm lực lên cổ và cột sống",
-      "Lắp bằng dây an toàn 3 điểm của xe",
+      "Có bản khoá ISOFIX hoặc lắp bằng dây an toàn xe",
     ],
-    note: "Màu Đỏ, Đen, Hồng, Xanh — nhắn shop để chọn màu.",
+    variants: [
+      { name: "Loại", options: [{ label: "Có khoá ISOFIX", price: 2885000 }, { label: "Không khoá ISOFIX", price: 2129000 }] },
+      { name: "Màu sắc", options: [{ label: "Đỏ" }, { label: "Đen" }, { label: "Hồng" }, { label: "Xanh" }] },
+    ],
     inStock: true,
   },
   {
@@ -858,7 +914,9 @@ export const products: Product[] = [
       "Chuẩn i-Size ECE R129, khoá ISOFIX + chân chống",
       "4 nấc ngả lưng, cho bé sơ sinh đến 4 tuổi",
     ],
-    note: "Màu Đen xám hoặc Đỏ cam.",
+    variants: [
+      { name: "Màu sắc", options: [{ label: "Đen xám" }, { label: "Đỏ cam" }] },
+    ],
     inStock: true,
   },
 ];
@@ -897,6 +955,15 @@ export function productBadge(p: Product) {
 
 export function getProduct(slug: string) {
   return products.find((p) => p.slug === slug);
+}
+
+// Giá thấp nhất / cao nhất khi có phân loại khác giá.
+export function priceRange(p: Product): [number, number] {
+  const prices = (p.variants ?? [])
+    .flatMap((g) => g.options.filter((o) => !o.soldOut).map((o) => o.price))
+    .filter((x): x is number => !!x);
+  if (!prices.length) return [p.price, p.price];
+  return [Math.min(...prices), Math.max(...prices)];
 }
 
 export function formatPrice(v: number) {

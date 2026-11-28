@@ -302,3 +302,20 @@ h2 { font-size: 1.6rem; font-weight: 800; }
 .toast b { color: var(--yellow); }
 @keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } }
 @media (max-width: 860px) { .toast { bottom: 92px; } }
+
+/* ---------- Variants ---------- */
+.variants { margin: 0 0 24px; display: flex; flex-direction: column; gap: 16px; }
+.variant-name { font-weight: 700; font-size: .9rem; margin: 0 0 8px; }
+.variant-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.variant-opt {
+  border: 1.5px solid var(--line); background: #fff; border-radius: 10px; padding: 9px 16px;
+  font-size: .9rem; font-weight: 600; cursor: pointer; transition: border-color .15s;
+}
+.variant-opt:hover:not(:disabled) { border-color: var(--navy); }
+.variant-opt.active { border-color: var(--navy); background: var(--navy); color: #fff; }
+.variant-opt:disabled { opacity: .45; cursor: not-allowed; text-decoration: line-through; }
+.variant-opt small { font-weight: 500; }
+.variant-missing .variant-name { color: var(--red); }
+.variant-missing .variant-opt:not(:disabled) { border-color: #f3a3b4; }
+.variant-error { color: var(--red); font-weight: 600; font-size: .88rem; margin: 0; }
+.price-from { font-size: .8rem; font-weight: 600; color: var(--muted); }
