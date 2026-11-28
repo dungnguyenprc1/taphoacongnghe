@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { shop, zaloUrl, telUrl, prettyPhone } from "@/lib/config";
 import { categories } from "@/data/products";
+import { policies } from "@/data/policies";
 import { Bolt, Menu } from "./Icons";
 import SearchBox from "./SearchBox";
 
@@ -29,6 +30,10 @@ export default function Header() {
               <p className="menu-title">Danh mục</p>
               {categories.slice(1).map((c) => (
                 <Link key={c.id} href={`/?cat=${c.id}#san-pham`}>{c.label}</Link>
+              ))}
+              <p className="menu-title">Hỗ trợ</p>
+              {policies.filter((p) => ["huong-dan-mua-hang", "chinh-sach-doi-tra", "chinh-sach-bao-hanh"].includes(p.slug)).map((p) => (
+                <Link key={p.slug} href={`/${p.slug}`}>{p.title}</Link>
               ))}
               <p className="menu-title">Liên hệ</p>
               <a href={shop.messenger} target="_blank" rel="noopener noreferrer">Nhắn Messenger</a>

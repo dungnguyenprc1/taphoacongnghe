@@ -9,6 +9,11 @@ export const shop = {
   // Số Zalo / điện thoại. Để trống thì nút tương ứng tự ẩn.
   zalo: "0369680613",
   phone: "0369680613",
+  // Điền thông tin thật trước khi đăng. Để trống thì dòng đó tự ẩn trên web.
+  owner: "", // Họ tên người phụ trách
+  email: "",
+  address: "",
+  hours: "8:00 – 21:00, Thứ 2 – Chủ nhật",
   policies: [
     "Ship COD toàn quốc",
     "Kiểm tra hàng trước khi nhận",
