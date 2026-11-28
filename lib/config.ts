@@ -10,8 +10,8 @@ export const shop = {
   zalo: "0369680613",
   phone: "0369680613",
   // Điền thông tin thật trước khi đăng. Để trống thì dòng đó tự ẩn trên web.
-  owner: "", // Họ tên người phụ trách
-  email: "",
+  owner: "Nguyễn Quốc Dũng", // Họ tên người phụ trách
+  email: "dungnguyenprc1@gmail.com",
   address: "",
   hours: "8:00 – 21:00, Thứ 2 – Chủ nhật",
   policies: [
