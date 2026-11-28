@@ -460,7 +460,7 @@ export const products: Product[] = [
     name: "Combo 2 củ sạc nhanh VOLTME Revo 30 GaN 30W (chân tròn)",
     shortName: "Combo 2 củ sạc VOLTME 30W",
     price: 251000,
-    image: ANH_TAM,
+    image: "/images/voltme-30w-chan-tron.webp",
     category: "sac-cap",
     warranty: "Liên hệ shop",
     features: [
